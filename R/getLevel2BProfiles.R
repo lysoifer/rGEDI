@@ -25,6 +25,7 @@
 #'\item \emph{elev_lowestmode} Elevation of center of lowest mode relative to reference ellipsoid
 #'\item \emph{height_lastbin} Height of the last bin of the pgap_theta_z, relative to the ground
 #'\item \emph{pai_z} Plant Area Index profile
+#'#'\item \emph{pavd_z} Plant Area Volume Density profile
 #'}
 #'
 #'@examples
@@ -65,21 +66,51 @@ getLevel2BPAIProfile<-function(level2b){
       shot_number=level2b_i[["shot_number"]][],
       algorithmrun_flag=level2b_i[["algorithmrun_flag"]][],
       l2b_quality_flag=level2b_i[["l2b_quality_flag"]][],
+      # ADDING QUALITY CONTROL PARAMETERS (SEE https://daac.ornl.gov/GEDI/guides/GEDI_HighQuality_Shots_Rasters.html)
+      sensitivity = level2b_i[["sensitivity"]][],
+      surface_flag = level2b_i[["surface_flag"]][],
+      stale_return_flag = level2b_i[["stale_return_flag"]][],
+      rh100 = level2b_i[["rh100"]][],
+      l2b_algrun_flag = level2b_i[["algorithmrun_flag"]][],
+      degrade_flag = level2b_i[["geolocation/degrade_flag"]][],
+      dem = level2b_i[["geolocation/digital_elevation_model"]][],
       delta_time=level2b_i[["geolocation/delta_time"]][],
       lat_lowestmode=level2b_i[["geolocation/lat_lowestmode"]][],
       lon_lowestmode=level2b_i[["geolocation/lon_lowestmode"]][],
       elev_highestreturn=level2b_i[["geolocation/elev_highestreturn"]][],
-      elev_lowestmode=level2b_i[["geolocation/elev_lowestmode"]][],
+      elev_lowestmode=level2b_i[["geolocation/elev_lowestmode"]][], # = ground_elev
       height_lastbin=level2b_i[["geolocation/height_lastbin"]][],
       height_bin0=level2b_i[["geolocation/height_bin0"]][],
-      pai_z=t(level2b_i[["pai_z"]][,1:level2b_i[["pai_z"]]$dims[2]]))
+      ls_waterp = level2b_i[["land_cover_data/landsat_water_persistence"]][],
+      urb_prop = level2b_i[["land_cover_data/urban_proportion"]][],
+      leafoff_flag = level2b_i[["land_cover_data/leaf_off_flag"]][],
+      cover = level2b_i[["cover"]][],
+      pai = level2b_i[["pai"]][],
+      pai_z=t(level2b_i[["pai_z"]][,1:level2b_i[["pai_z"]]$dims[2]]),
+      pavd_z=t(level2b_i[["pavd_z"]][,1:level2b_i[["pavd_z"]]$dims[2]]))
     m.dt<-rbind(m.dt,m)
   }
   colnames(m.dt)<-c("beam","shot_number","algorithmrun_flag",
-                    "l2b_quality_flag","delta_time","lat_lowestmode",
+                    "l2b_quality_flag",
+                    "sensitivity",
+                    "surface_flag",
+                    "stale_return_flag",
+                    "rh100",
+                    "l2b_algrun_flag",
+                    "degrade_flag",
+                    "dem",
+                    "delta_time","lat_lowestmode",
                     "lon_lowestmode","elev_highestreturn",
                     "elev_lowestmode","height_lastbin",
-                    "height_bin0",paste0("pai_z",seq(0,30*5,5)[-31],"_",seq(5,30*5,5),"m"))
+                    "height_bin0",
+                    "ls_waterp",
+                    "urb_prop",
+                    "leafoff_flag",
+                    "cover",
+                    "pai",
+                    paste0("pai_z",seq(0,30*5,5)[-31],"_",seq(5,30*5,5),"m"),
+                    paste0("pavd_z",seq(0,30*5,5)[-31],"_",seq(5,30*5,5),"m")
+  )
   close(pb)
   return(m.dt)
 }
