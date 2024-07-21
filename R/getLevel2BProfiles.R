@@ -25,6 +25,7 @@
 #'\item \emph{elev_lowestmode} Elevation of center of lowest mode relative to reference ellipsoid
 #'\item \emph{height_lastbin} Height of the last bin of the pgap_theta_z, relative to the ground
 #'\item \emph{pai_z} Plant Area Index profile
+#'#'\item \emph{pavd_z} Plant Area Volume Density profile
 #'}
 #'
 #'@examples
