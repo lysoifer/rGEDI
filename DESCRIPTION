@@ -1,5 +1,5 @@
 Package: rGEDI
-Type: Package
+Type: PACKAGE
 Title: NASA's Global Ecosystem Dynamics Investigation (GEDI) Data Visualization and Processing
 Version: 0.5.0
 Authors@R: c(
@@ -44,7 +44,7 @@ Suggests:
   rasterVis,
   sf,
   viridis
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 Roxygen: list(markdown = TRUE)
 BugReports: https://github.com/carlos-alberto-silva/rGEDI/issues
 URL: https://github.com/carlos-alberto-silva/rGEDI

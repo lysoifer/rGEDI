@@ -50,7 +50,7 @@
 #'@import utils
 #'@importFrom hdf5r H5File
 #'@export
-getLevel2BPAIProfile<-function(level2b){
+getLevel2BProfiles<-function(level2b){
   level2b<-level2b@h5
   groups_id<-grep("BEAM\\d{4}$",gsub("/","",
                                      hdf5r::list.groups(level2b, recursive = F)), value = T)

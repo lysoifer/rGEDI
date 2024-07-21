@@ -2,6 +2,7 @@
 % Please edit documentation in R/rGEDI-package.R
 \docType{package}
 \name{rGEDI-package}
+\alias{rGEDI}
 \alias{rGEDI-package}
 \title{rGEDI: An R Package for NASA's Global Ecosystem Dynamics Investigation (GEDI) Data Visualizing and Processing.}
 \description{
