@@ -67,6 +67,7 @@ getLevel2BProfiles<-function(level2b){
       algorithmrun_flag=level2b_i[["algorithmrun_flag"]][],
       l2b_quality_flag=level2b_i[["l2b_quality_flag"]][],
       # ADDING QUALITY CONTROL PARAMETERS (SEE https://daac.ornl.gov/GEDI/guides/GEDI_HighQuality_Shots_Rasters.html)
+      l2a_quality_flag = level2b_i[["l2a_quality_flag"]][],
       sensitivity = level2b_i[["sensitivity"]][],
       surface_flag = level2b_i[["surface_flag"]][],
       stale_return_flag = level2b_i[["stale_return_flag"]][],
@@ -91,7 +92,7 @@ getLevel2BProfiles<-function(level2b){
     m.dt<-rbind(m.dt,m)
   }
   colnames(m.dt)<-c("beam","shot_number","algorithmrun_flag",
-                    "l2b_quality_flag",
+                    "l2b_quality_flag", "l2a_quality_flag",
                     "sensitivity",
                     "surface_flag",
                     "stale_return_flag",
